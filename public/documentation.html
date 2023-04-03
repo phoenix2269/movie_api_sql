@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <title>Myflix</title>
+    </head>
+    <body>
+        <p>
+            The movie API returns a list of ALL movies to the user as well as returning details (genre, description, image URL, etc) on user-specified movies (by title).  See other features below.
+        </p>
+        <ul>
+            <li>
+                Return data about a genre (description) by name/title (e.g., “Thriller”)
+            </li>
+            <li>
+                Return data about a director (bio, birth year, death year) by name
+            </li>
+            <li>
+                User actions - register, update user info, create favorites list, update favorites list, deregister
+            </li>
+        </ul>
+        <div>
+            <h2>Objective</h2>
+            <p>
+                The movie API returns a list of ALL movies to the user as well as returning details (genre, description, image URL, etc) on user-specified movies (by title).  
+                See other features below.
+
+                The movie API allows users to retrieve information about movies, genres, and directors.  
+                Users will also be able to sign-up, update and delete their account, as well as create and modify a list of favorite movies
+            </p>
+            <h2>Features</h2>
+            <h3>Movie Endpoints</h3>
+            <ul>
+                <li>Return a list of ALL movies to the user</li>
+                <li>Return data (description, genre, director, image URL, whether it's featured or not) about a single movie by title to the user</li>
+                <li>Return data about a genre (description) by name/title</li>
+                <li>Return data about a director (bio, birth year, death year) by name</li>
+            </ul>
+            <h3>User Endpoints</h3>
+            <ul>
+                <li>Allow new users to register</li>
+                <li>Allow users to update their user info</li>
+                <li>Allow users to add a movie to their favorites list</li>
+                <li>Allow users to remove a movie from their favorites list</li>
+                <li>Allow existing users to deregister</li>
+            </ul>
+            <h2>Endpoint Documentation</h2>
+            <table>
+                <th>
+                    <tr>
+                        <th>Business Logic</th>
+                        <th>URL</th>
+                        <th>HTTP Method</th>
+                        <th>Request body data format</th>
+                        <th>Response body data format</th>
+                    </tr>
+                </th>
+                <tb>
+                    <tr>
+                        <td>Get a list of ALL movies</td>
+                        <td>/movies</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about all the movies, structured like:
+                            {<br>
+                                "Genre": {<br>
+                                    "Name": "Action",<br>
+                                    "Description": "While action has long been a recurring component in films, the action film genre began to develop in the 1970s along with the increase of stunts and special effects."<br>
+                                },<br>
+                                "Director": {<br>
+                                    "Name": "Chad Stahelski",<br>
+                                    "Bio": "Chad Stahelski is an American stuntman and film director. He is known for directing the 2014 film John Wick and its three sequels. He has worked as a stuntman, stunt coordinator and second unit director on several films.",<br>
+                                    "Birth": "1968",<br>
+                                    "Death": ""<br>
+                                },<br>
+                                "_id": "6427a81da980ad4336509c99",<br>
+                                "Title": "John Wick: Chapter 4",<br>
+                                "Description": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",<br>
+                                "ImagePath": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_Ratio0.6716_AL_.jpg",<br>
+                                "ReleaseYear": "2023",<br>
+                                "RottenTomatoes": "94",<br>
+                                "Featured": true<br>
+                            }<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get movie details by Title</td>
+                        <td>/movies/:title</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about a single movie, structured like:<br>
+                            {<br>
+                                "Genre": {<br>
+                                    "Name": "Action",<br>
+                                    "Description": "While action has long been a recurring component in films, the action film genre began to develop in the 1970s along with the increase of stunts and special effects."<br>
+                                },<br>
+                                "Director": {<br>
+                                    "Name": "Chad Stahelski",<br>
+                                    "Bio": "Chad Stahelski is an American stuntman and film director. He is known for directing the 2014 film John Wick and its three sequels. He has worked as a stuntman, stunt coordinator and second unit director on several films.",<br>
+                                    "Birth": "1968",<br>
+                                    "Death": ""<br>
+                                },<br>
+                                "_id": "6427a81da980ad4336509c99",<br>
+                                "Title": "John Wick: Chapter 4",<br>
+                                "Description": "John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",<br>
+                                "ImagePath": "https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZGFjNmZiMTEwXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_Ratio0.6716_AL_.jpg",<br>
+                                "ReleaseYear": "2023",<br>
+                                "RottenTomatoes": "94",<br>
+                                "Featured": true<br>
+                            }<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get genre by name</td>
+                        <td>/movies/genre/:name</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about a specific genre, structured like:<br>
+                            {<br>
+                                "Name": "Action",<br>
+                                "Description": "While action has long been a recurring component in films, the action film genre began to develop in the 1970s along with the increase of stunts and special effects."<br>
+                            }<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Get director by name</td>
+                        <td>/movies/directors/:name</td>
+                        <td>GET</td>
+                        <td>None</td>
+                        <td>A JSON object holding data about a director, structured like:<br>
+                            {<br>
+                                "Name": "Elizabeth Banks",<br>
+                                "Bio": "Elizabeth Banks is an American actress and filmmaker. She is known for playing Effie Trinket in The Hunger Games film series and Gail Abernathy-McKadden in the Pitch Perfect film series.",<br>
+                                "Birth": "1974",<br>
+                                "Death": ""<br>
+                            }<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Create new user</td>
+                        <td>/users</td>
+                        <td>POST</td>
+                        <td>A JSON object holding data about the user to add, structured like:<br>
+                            {<br>
+                                &emsp;ID: Integer,
+                                &emsp;Username: String, (required)<br>
+                                &emsp;Password: String, (required)<br>
+                                &emsp;Email: String, (required)<br>
+                                &emsp;Birthday: Date<br>
+                            }<br>
+                            {<br>
+                                &emsp;"Username":"kspencer284",<br>
+                                &emsp;"Password":"tgbyhn%6",<br>
+                                &emsp;"Email":"kspencer284@yhoo.com",<br>
+                                &emsp;"Birthday":"10/25/1976"<br>
+                            }
+                        </td>
+                        <td>A JSON object holding data about the user that was added, structured like:<br>
+                            {<br>
+                                &emsp;"Username": "kspencer284",<br>
+                                &emsp;"Password": "tgbyhn%6",<br>
+                                &emsp;"Email": "kspencer284@yhoo.com",<br>
+                                &emsp;"Birthday": "1976-10-25T04:00:00.000Z",<br>
+                                &emsp;"FavoriteMovies": [],<br>
+                                &emsp;"_id": "642ad499482a563b40d7c63c",<br>
+                                &emsp;"__v": 0<br>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Update user info</td>
+                        <td>/users/:name</td>
+                        <td>PUT</td>
+                        <td>A JSON object holding data about the user to update, structured like:<br>
+                            {<br>
+                                &emsp;ID: Integer,<br>
+                                &emsp;Username: String, (required)<br>
+                                &emsp;Password: String, (required)<br>
+                                &emsp;Email: String, (required)<br>
+                                &emsp;Birthday: Date<br>
+                            }<br>
+                            {<br>
+                                &emsp;"Username":"kat1268",<br>
+                                &emsp;"Password":"edcrfv#4",<br>
+                                &emsp;"Email":"kat1268@gugle.com",<br>
+                                &emsp; "Birthday":"06/09/2005"<br>
+                            }
+                        </td>
+                        <td>A JSON object holding data about the user that was updated, structured like:<br>
+                            {<br>
+                                "FavoriteMovies": [],<br>
+                                "_id": "6427a680a980ad4336509c95",<br>
+                                "Password": "edcrfv#4",<br>
+                                "Email": "kat1268@gugle.com",<br>
+                                "Birthday": "2005-06-09T04:00:00.000Z",<br>
+                                "Username": "kat1268"<br>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Delete user</td>
+                        <td>/users/:name</td>
+                        <td>DELETE</td>
+                        <td>None</td>
+                        <td>A text message indicating whether the user was successfully deleted</td>
+                    </tr>
+                    <tr>
+                        <td>Add movie to favorites</td>
+                        <td>/users/:username/movies/:id</td>
+                        <td>POST</td>
+                        <td>None
+
+                        </td>
+                        <td>A JSON object holding data about the user that was added, structured like:<br>
+                            {<br>
+                                "_id": "642ad499482a563b40d7c63c",<br>
+                                "Username": "kspencer284",<br>
+                                "Password": "tgbyhn%6",<br>
+                                "Email": "kspencer284@yhoo.com",<br>
+                                "Birthday": "1976-10-25T04:00:00.000Z",<br>
+                                "FavoriteMovies": [<br>
+                                    "6427a889a980ad4336509c9b"<br>
+                                ],<br>
+                                "__v": 0<br>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Delete movie from favorites</td>
+                        <td>/users/:username/movies/:id</td>
+                        <td>DELETE</td>
+                        <td>None</td>
+                        <td>A text message indicating whether the movie was successfully removed</td>
+                    </tr>
+                </tb>
+            </table>
+        </div>
+    </body>
+</html>
